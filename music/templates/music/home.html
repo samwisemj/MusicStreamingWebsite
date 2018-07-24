@@ -1,0 +1,240 @@
+<html>
+{% load staticfiles %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>-->
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>-->
+
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+body, html {
+    height: 100%;
+    line-height: 1.6;
+}
+/* Full height image header */
+
+.w3-bar .w3-button {
+    padding: 16px;
+}
+.mySlides {display:none;
+}
+slider
+{
+transition: 1s;
+}
+
+</style>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <a href="#home" class="w3-bar-item w3-button w3-wide"><i class="fa fa-headphones" style="font-size:24px;color:red"></i></a>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="#about" class="w3-bar-item w3-button"><i class="fa fa-info-circle"></i>ABOUT</a>
+      <a href="#team" class="w3-bar-item w3-button"><i class="fa fa-user"></i> BIO</a>
+      <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
+      {% if user.is_authenticated %}
+      <a href="/logout" class="w3-bar-item w3-button"><i class="glyphicon glyphicon-log-out"></i> LOGOUT</a>
+      {% endif %}
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+  </div>
+</div>
+
+
+<!-- Header with full-height image -->
+<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+  <div id="slider">
+<img class="mySlides" src="{% static 'images/11.jpg'%}" style="width:100%">
+  <img class="mySlides" src="{% static 'images/22.jpg'%}" style="width:100%">
+  <img class="mySlides" src="{% static 'images/33.jpg'%}" style="width:100%">
+    <img class="mySlides" src="{% static 'images/lz.jpg'%}" style="width:100%">
+</div>
+    <script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel, 5000); // Change image every 2 seconds
+}
+</script>
+
+  <div class="w3-display-left w3-text-white" style="padding:48px">
+    <span class="w3-jumbo w3-hide-small">AdderNet Music App</span><br>
+    <span class="w3-xxlarge w3-hide-large w3-hide-medium">Pink Floyd Music App</span><br>
+
+      {% if user.is_authenticated %}
+      <span class="w3-large">Welcome {{user.username}}</span>
+   <!--<a href="/albums" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">View Albums</a>-->
+      {% else %}
+      <span class="w3-large">Listen and download your favorite songs for free without any ads. What are you waiting for?</span>
+    <p><a href="{% url 'music:albums' %}" class="w3-button w3-white w3-padding-medium w3-medium w3-margin-top w3-opacity w3-hover-opacity-off">View Albums</a>
+
+    {% endif %}
+  </div>
+</header>
+
+<!-- About Section -->
+<div class="w3-container" style="padding:128px 16px" id="about">
+  <h3 class="w3-center">ABOUT OUR WEBSITE</h3>
+  <p class="w3-center w3-large">Key features</p>
+  <div class="w3-row-padding w3-center" style="margin-top:64px">
+    <div class="w3-quarter">
+      <i class="fa fa-music w3-margin-bottom w3-jumbo w3-center"></i>
+      <p class="w3-large">HQ Audio</p>
+      <p>Listen and download high quality audio files.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-download w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Free Download</p>
+      <p>Download any number of songs you want for free.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-list w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Playlist</p>
+      <p>Create and edit your own playlist and access it from any device.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-cog w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Support</p>
+      <p>We provide assistance to our user 24*7. </p>
+    </div>
+  </div>
+</div>
+
+<!-- Team Section -->
+<div class="w3-container" style="padding:128px 16px" id="team">
+  <h3 class="w3-center">THE BAND</h3>
+  <p class="w3-center w3-large"></p>
+  <div class="w3-row-padding w3-grayscale" style="margin-top:64px">
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-card">
+        <img src="{% static 'images/RW1.jpg'%}" alt="John" style="width:100%">
+        <div class="w3-container">
+          <h3>Roger Waters</h3>
+          <p class="w3-opacity">Basist & Vocals</p>
+          <p>George Roger Waters (born 6 September 1943) is an English singer, songwriter, bassist, and composer. In 1965, he co-founded the progressive rock band Pink Floyd with drummer Nick Mason, keyboardist Richard Wright, and guitarist, singer, and songwriter Syd Barrett. Waters initially served as the bassist, but following the departure of Barrett in 1968, he also became their lyricist, co-lead vocalist, and conceptual leader.</p>
+          <p><button class="w3-button w3-light-grey w3-block" onclick="location.href='https://en.wikipedia.org/wiki/Roger_Waters';"><i class="fa fa-info-circle"></i> Know more...</button></p>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-card">
+        <img src="{% static 'images/DG1.jpg'%}" alt="Jane" style="width:100%">
+        <div class="w3-container">
+          <h3>David Gilmour</h3>
+          <p class="w3-opacity">Lead Guitarist & Vocals</p>
+          <p>David Jon Gilmour, CBE (born 6 March 1946) is an English guitarist, singer and songwriter best known as a longtime member of the progressive rock band Pink Floyd. He joined the group as guitarist and co-lead vocalist in 1968, replacing founder member Syd Barrett.</p>
+          <p><button class="w3-button w3-light-grey w3-block" onclick="location.href='https://en.wikipedia.org/wiki/David_Gilmour';"><i class="fa fa-info-circle"></i> Know more...</button></p>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-card">
+        <img src="{% static 'images/RR1.jpg'%}" alt="Mike" style="width:100%">
+        <div class="w3-container">
+          <h3>Rick Wright</h3>
+          <p class="w3-opacity">Rhythm</p>
+          <p>Richard William Wright (28 July 1943 – 15 September 2008) was an English musician, composer, singer, and songwriter. He was a founder member, keyboardist, and vocalist of the progressive rock band Pink Floyd, performing on all but one of the group's albums including The Piper at the Gates of Dawn, The Dark Side of the Moon, Wish You Were Here and The Division Bell, and playing on all of their tours.</p>
+          <p><button class="w3-button w3-light-grey w3-block" onclick="location.href='https://en.wikipedia.org/wiki/Richard_Wright_%28musician%29';"><i class="fa fa-info-circle"></i> Know more...</button></p>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-card">
+        <img src="{% static 'images/NM1.jpg'%}" alt="Dan" style="width:100%">
+        <div class="w3-container">
+          <h3>Nick Mason</h3>
+          <p class="w3-opacity">Drummer</p>
+          <p>Nicholas Berkeley Mason (born 27 January 1944) is an English drummer, best known as a founding member of the progressive rock group Pink Floyd.</p>
+          <p><button class="w3-button w3-light-grey w3-block" onclick="location.href='https://en.wikipedia.org/wiki/Nick_Mason';"><i class="fa fa-info-circle"></i> Know more...</button></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal for full size images on click-->
+<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+  <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
+  <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+    <img id="img01" class="w3-image">
+    <p id="caption" class="w3-opacity w3-large"></p>
+  </div>
+</div>
+
+
+<!-- Contact Section -->
+<div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
+  <h3 class="w3-center">CONTACT</h3>
+  <p class="w3-center w3-large">Lets get in touch. Send us a message:</p>
+  <div class="w3-row-padding" style="margin-top:64px">
+    <div class="w3-half">
+      <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Kolkata, WestBengal</p>
+      <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +91 8697036339</p>
+      <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: samwise.mj@gmail.com</p>
+      <br>
+      <form action="/action_page.php" target="_blank">
+        <p><input class="w3-input w3-border" type="text" placeholder="Name" required name="Name"></p>
+        <p><input class="w3-input w3-border" type="text" placeholder="Email" required name="Email"></p>
+        <p><input class="w3-input w3-border" type="text" placeholder="Subject" required name="Subject"></p>
+        <p><input class="w3-input w3-border" type="text" placeholder="Message" required name="Message"></p>
+        <p>
+          <button class="w3-button w3-black" type="submit">
+            <i class="fa fa-paper-plane"></i> SEND MESSAGE
+          </button>
+        </p>
+      </form>
+    </div>
+    <div class="w3-half">
+      <!-- Add Google Maps -->
+      <!--<div id="map" class="w3-greyscale-max" style="width:100%;height:510px;"></div>-->
+
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <div class="w3-xlarge w3-section">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+</footer>
+<!-- Add Google Maps -->
+<!--
+To use this code on your website, get a free API key from Google.
+Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+-->
+
+</body>
+</html>
+

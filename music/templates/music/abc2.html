@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Form Model</title>
+</head>
+<body>
+<form action="abc2" method="post">
+    {%csrf_token %}
+    {% for fields in form.visible_fields %}
+        <div align="justify" >
+    <span><h2 colour="red">{{ fields.errors }}</h2></span>
+    <span>{{ fields.help_text }}</span>
+    <span>{{  fields }}</span>
+    {% endfor %}
+    <span><br><button type="Submit" class="btn btn-success">Submit</button> </span>
+    </div>
+<br>
+{%  if saved %}
+    <h3 colour="Blue">Data Saved</h3>
+{% else %}
+    <h3 colour="red">Data Not Saved</h3>
+{% endif %}
+</form>
+</body>
+</html>

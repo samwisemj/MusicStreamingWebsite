@@ -1,0 +1,168 @@
+<!--<html>-->
+<!--<head>-->
+<!--</head>-->
+<!--<body>-->
+<!--{#aka details.html#}-->
+<!--{% load staticfiles %}-->
+<!--{#<link rel="stylesheet" href="{% static 'css/sl.css' %}">#}-->
+<!--<link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">-->
+<!--<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">-->
+<!--<link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css'%}"  media="screen,projection">-->
+<!--<script type="text/javascript" src="{% static 'js/materialize.min.js'%}"></script>-->
+<!--<script type="text/javascript" src="{% static 'js/jquery.js'%}"></script>-->
+<!--<script type="text/javascript" src="{% static 'js/xd.js'%}"></script>-->
+<!--<script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
+<!--<script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+<!--{#<script type = "text/javascript" src="{% static 'js/ext.js' %}"></script>#}-->
+<!--<script>-->
+<!--$(document).ready(function(){-->
+    <!--$('.parallax').parallax();-->
+  <!--});-->
+<!--</script>-->
+<!--<nav>-->
+    <!--<div class="nav-wrapper green">-->
+        <!--<ul id="nav-mobile" class="right hide-on-med-and-down">-->
+        <!--<li><a href="http://localhost:3000/">Home</a></li>-->
+        <!--<li><a href="">Contact Us</a></li>-->
+        <!--<li><a href="{% url 'music:vplist' %}">ShowFavourites</a></li>-->
+      <!--</ul>-->
+<!--{#      <a href="http://localhost:3000/" class="brand-logo"></a>#}-->
+
+    <!--</div>-->
+<!--</nav>-->
+<!--<div class="container"><h4 align="center">{{ album.album_title }}</h4></div>-->
+<!--{%  if msg %}-->
+<!--<p><strong>AddedtoFavs</strong></p>-->
+<!--{% endif %}-->
+
+<!--<div class="parallax-container">-->
+  <!--<div class="parallax"><img src="{{ album.album_logo }}"></div>-->
+<!--</div>-->
+<!--&lt;!&ndash;<div class="container">&ndash;&gt;-->
+<!--&lt;!&ndash;<table class="centered">&ndash;&gt;-->
+<!--&lt;!&ndash;<tr align="center"><td>&ndash;&gt;-->
+    <!--&lt;!&ndash;<img src="{{ album.album_logo }}" style="width:600px;height:300px;">&ndash;&gt;-->
+<!--&lt;!&ndash;</tr>&ndash;&gt;-->
+<!--</table>-->
+<!--</div>-->
+ <!--{% csrf_token %}-->
+<!--<div class="container">-->
+<!--<table class="responsive striped">-->
+    <!--{% for songs in album.song_set.all %}-->
+        <!--<tr>-->
+            <!--<td>{{ songs.song_title }}</td>-->
+               <!--<td> <audio controls><source src="http://localhost/Pink Floyd/{{ album.album_title }}/{{ songs.song_title }}.mp3" type="audio/mpeg"></audio></td>-->
+            <!--<td><a class="btn-floating pulse cyan tooltipped" data-position="right" data-tooltip="Add To Favourites"  href="{% url 'music:plist' songs.id album.id %}"><i class="material-icons">playlist_add</i></a></td>-->
+               <!--</tr>-->
+    <!--{% endfor %}-->
+
+<!--</table>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+<html>
+<head>
+    <style>
+    h3
+    {
+    font-family: Berlin, sans serif;
+    color: #25383C;
+    }
+    h3:hover
+    {
+    color: blue;
+    font-size: 50px;
+    transition: 2s;
+    }
+        img
+        {
+        margin-left:250px;
+        }
+        tr:hover
+        {
+        background-color: #98AFC7;
+        font-weight: bold;
+        }
+        table
+        {
+        background-color: #BCC6CC;
+    </style>
+<link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+
+<script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<body>
+  <nav>
+    <div class="nav-wrapper green" >
+      <a href="#" class="brand-logo">{{cuser}}</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="{% url 'music:albums' %}">Albums</a></li>
+        <li><a href="{% url 'music:vplist' %}">View Playlist</a></li>
+          <li><a href="{% url 'music:home' %}">Home</a></li>
+          <li><a href="">AdderNet Home</a></li>
+
+      </ul>
+    </div>
+  </nav>
+
+
+
+{#aka details.html#}
+{%  if msg %}
+<p><strong>{{msg}}</strong></p>
+{% endif %}
+<script>
+    function Replace(e)
+    {
+        e.value="Added";
+
+
+    }
+</script>
+  <script>
+      document.addEventListener('play', function(e){
+    var audios = document.getElementsByTagName('audio');
+    for(var i = 0, len = audios.length; i < len;i++){
+        if(audios[i] != e.target){
+            audios[i].pause();
+        }
+    }
+}, true);
+  </script>
+<h3 align="center">{{ album.album_title }}</h3><br>
+
+<!--<table align="center">-->
+<!--<tr align="center"><td>-->
+    <!--<img src="{{ album.album_logo }}" style="width:600px;height:300px;">-->
+    <!--</td>-->
+<!--</tr>-->
+<!--</table>-->
+
+  <div class="container">
+    <img class="materialboxed" width="450" src="{{album.album_logo}} "></div>
+
+{# <form action="{% url 'music:favourite' album.id %}" method="post">#}
+ {% csrf_token %}
+      <div class="container">
+<table class="striped">
+    {% for songs in album.song_set.all %}
+        <tr>
+            <td>{{ songs.song_title }}</td>
+               <td>
+                   <audio controls><source src="http://localhost:80/Pink Floyd/{{ album.album_title }}/{{ songs.song_title }}.mp3" type="audio/mpeg"></audio>
+                   <!--<a href="{% url 'music:plist' album.id songs.id %}">AddToFav</a><br>-->
+                    <td><a class="btn-floating pulse cyan tooltipped" data-position="right" data-tooltip="Add To Favourites"
+                           href="{% url 'music:plist' songs.id album.id %}"><i class="material-icons">playlist_add</i></a></td>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+      </div>
+    <!--<a href="{% url 'music:vplist' %}">Show Playlist</a>-->
+  </form></body></html>

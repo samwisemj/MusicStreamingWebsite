@@ -1,0 +1,117 @@
+
+<!--{% load staticfiles %}-->
+<!--{#<link rel="stylesheet" href="{% static 'css/sl.css' %}">#}-->
+<!--<link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">-->
+<!--<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">-->
+
+<!--<script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
+<!--<script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+<!--{#<script type = "text/javascript" src="{% static 'js/ext.js' %}"></script>#}-->
+<!--<nav>-->
+    <!--<div class="nav-wrapper green">-->
+      <!--<a href="" class="brand-logo">Albums</a>-->
+      <!--<ul id="nav-mobile" class="right hide-on-med-and-down">-->
+        <!--<li><a href="http://localhost:3000/">Home</a></li>-->
+        <!--<li><a href="">Contact Us</a></li>-->
+        <!--<li><a href="{% url 'music:vplist' %}">ShowFavourites</a></li>-->
+      <!--</ul>-->
+    <!--</div>-->
+<!--</nav>-->
+<!--<div class="header">-->
+    <!--<h2 align="center">Enjoy Free Music :)</h2></div>-->
+<!--<div class="container"><h4>Select Album</h4></div>-->
+
+<!--<div class="container">-->
+<!--<table class="striped">-->
+
+    <!--{% for album in all_albums %}-->
+        <!--<tr>-->
+        <!--<td>-->
+        <!--<a href="{% url 'music:detail' album.id %}">{{ album.album_title }}</a><br>-->
+    <!--{% endfor %}-->
+    <!--</td>-->
+    <!--</tr>-->
+<!--</table>-->
+<!--</div>-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!--<table align="center">-->
+<!--<td>-->
+<style>
+
+img {
+    border: 1px solid #ddd; /* Gray border */
+    border-radius: 4px;  /* Rounded border */
+    padding: 5px; /* Some padding */
+    width: 150px; /* Set a small width */
+    opacity: 1.0;
+    filter: alpha(opacity=100);
+  -webkit-transition: -webkit-transform .8s ease-in-out;
+          transition:         transform .8s ease-in-out;
+}
+img:hover {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+a:hover {
+    color: green;
+}
+a{font-size: 16px;
+    }
+
+  </style>
+
+
+<link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+
+<script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<body>
+
+  <nav>
+    <div class="nav-wrapper green" >
+      <a href="#" class="brand-logo">Albums</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="{% url 'music:vplist' %}">View Playlist</a></li>
+          <li><a href="{% url 'music:home' %}">Home</a></li>
+          <li><a href="">AdderNet Home</a></li>
+      </ul>
+    </div>
+  </nav>
+
+          <!--{% for album in all_albums %}-->
+        <!--{% if forloop.first %}<div class="row">{% endif %}-->
+            <!--<div class="column">-->
+                <!--<img src="{{album.album_logo}}">-->
+                <!--</img>-->
+            <!--</div>-->
+        <!--{% if forloop.counter|divisibleby:"3" %}</div><div class="row">{% endif %}-->
+        <!--{% if forloop.last %}</div>{% endif %}-->
+    <!--{% endfor %}-->
+
+
+<table class="striped">
+                    <tr>
+                        {% for album in all_albums %}
+                        <td>
+                            <a href="{% url 'music:detail' album.id %}">
+                             <img src="{{album.album_logo}}" class="circle">{{album.album_title}}</a>
+                        </td>
+                        <!--{% if forloop.counter|divisibleby:3 %}-->
+                    </tr>
+                    <!--<tr>-->
+                        <!--{% endif %}-->
+                        {% endfor %}
+                    <!--</tr>-->
+</table>
+</body>
+</html>
+

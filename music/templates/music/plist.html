@@ -1,0 +1,45 @@
+{#aka details.html#}
+{% load staticfiles %}
+{#<link rel="stylesheet" href="{% static 'css/sl.css' %}">#}
+<link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+
+<script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+{#<script type = "text/javascript" src = "{% static 'js/ext.js' %}"></script>#}
+
+
+<nav>
+    <div class="nav-wrapper blue">
+        <a href="" class="brand-logo">Favourites</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="{% url 'music:home' %}">Home</a></li>
+        <li><a href="{% url 'music:albums' %}">Albums</a></li>
+        <li><a href="">AdderNet Home</a></li>
+        <li><a href="">Contact Us</a></li>
+      </ul>
+    </div>
+</nav>
+ <div class="card-panel teal lighten-2">
+{%  if msg %}
+<p><strong>RemovedFromFavs</strong></p>
+{% endif %}
+
+{#    <div class="parallax-container">#}
+{#      <div class="parallax"><img src="{% static 'images/bgimg.jpg' %}"></div>#}
+{#    </div>#}
+
+<div class="container">
+<table class="striped">
+   {% for pl in all_pl %}
+        {% ifequal pl.userid cuser %}
+          <tr>
+          <td>{{ pl.song.song_title }}</td>
+              <td> <audio controls><source src="http://localhost:80/Pink Floyd/{{ pl.song.album.album_title }}/{{ pl.song.song_title }}.mp3" type="audio/mpeg"></audio></td>
+            <td><a class="btn-floating  pulse red tooltipped" data-position="right" data-tooltip="Remove"  href="{% url 'music:delsong' pl.id %}"><i class="material-icons">clear</i></a></td>
+          </tr>
+        {% endifequal %}
+    {% endfor %}
+</table>
+</div></div>
